@@ -167,6 +167,10 @@ El keystore **no se versiona** (ruta local temporal). El APK publicado en GitHub
 firmado con ese keystore DEMO. Para producción: crear una keystore segura, no compartirla y usar
 Play App Signing.
 
+**Release pública:** <https://github.com/andrespar2/Cavio/releases/tag/v1.0.0>
+APK: `cavio-1.0.0.apk` (5.357.761 bytes) · SHA-256
+`6E6C2698CBCF3FBCC3FC15FCC34193F55D7BC6257CA0E6F44F033F303974C244`.
+
 ### Dispositivo Android (pruebas con la build web)
 
 ```powershell
@@ -477,7 +481,8 @@ físico). Rutas probadas: públicas, pasajero, conductor y administrador.
   - **debug** instalado y probado.
   - **release 1.0.0** firmado, instalado tras desinstalar el debug; arranca correctamente.
   - `versionCode=1`, `versionName=1.0.0`, minSdk 23, targetSdk 35; firma válida (SHA-256
-    `a1c46861…`).
+    `a1c46861…`). APK publicado en GitHub Releases (5.357.761 bytes, SHA-256
+    `6E6C2698…`).
   - Botón físico atrás: de `/pasajero` vuelve a `/` sin cerrar la app.
   - Aviso de mapas sin conexión visible.
 
