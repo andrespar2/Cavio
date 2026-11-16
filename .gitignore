@@ -1,0 +1,28 @@
+# Dependencias y artefactos
+node_modules/
+dist/
+.vite/
+release/*.apk
+*.keystore
+*.jks
+*.idsig
+.env
+.env.*
+*.log
+
+# Pruebas y herramientas locales
+shots/
+.playwright-mcp/
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/capacitor-cordova-android-plugins/
+android/app/src/main/assets/public/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.tsbuildinfo

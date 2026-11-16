@@ -1,0 +1,367 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CAVIO — Sistema de diseño AMOLED
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+  --cavio-lime: #c6f36b;
+  --cavio-black: #000000;
+  --cavio-surface: #0a0a0a;
+  --cavio-surface-2: #111111;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: #000;
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background:
+    radial-gradient(1000px 600px at 85% -10%, rgba(198, 243, 107, 0.07), transparent 60%),
+    radial-gradient(800px 500px at -10% 110%, rgba(198, 243, 107, 0.04), transparent 60%),
+    #000;
+  color: #f4f4f4;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Inter, Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100dvh;
+  isolation: isolate;
+}
+
+/* Tipografía fluida y sin desbordes */
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+}
+
+p,
+span,
+label,
+td,
+th,
+li,
+div {
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background: rgba(198, 243, 107, 0.28);
+  color: #fff;
+}
+
+/* Scrollbars discretas */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+@layer base {
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(198, 243, 107, 0.8);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Superficie tipo "liquid glass" sutil */
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(24, 24, 24, 0.82) 0%,
+      rgba(11, 11, 11, 0.9) 100%
+    );
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    backdrop-filter: blur(28px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 24px 64px -28px rgba(0, 0, 0, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .glass-soft {
+    background: rgba(17, 17, 17, 0.6);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .card {
+    @apply rounded-3xl border border-white/[0.07] bg-[#0b0b0b]/90 p-5 shadow-soft;
+  }
+
+  .card-hover {
+    @apply transition-all duration-200 hover:border-white/[0.14] hover:bg-[#101010];
+  }
+
+  .field-label {
+    @apply mb-2 block text-[13px] font-medium text-white/60;
+  }
+
+  .input-base {
+    @apply w-full min-w-0 rounded-2xl border border-white/10 bg-[#101010] px-4 py-3 text-[15px] text-white
+      placeholder:text-white/30 transition focus:border-lime/60 focus:bg-[#131313] focus:outline-none
+      focus:ring-2 focus:ring-lime/15 disabled:opacity-50;
+    min-height: 48px;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5
+      text-xs font-medium text-white/70;
+  }
+
+  .section-title {
+    @apply text-[13px] font-semibold uppercase tracking-[0.14em] text-white/40;
+  }
+
+  .link {
+    @apply font-medium text-lime underline-offset-4 transition hover:underline;
+  }
+
+  .divider {
+    @apply h-px w-full bg-white/[0.07];
+  }
+
+  .table-wrap {
+    @apply w-full overflow-x-auto rounded-3xl border border-white/[0.07] bg-[#080808];
+  }
+
+  .data-table {
+    @apply w-full min-w-[720px] border-collapse text-left text-sm;
+  }
+  .data-table thead th {
+    @apply whitespace-nowrap border-b border-white/[0.07] px-4 py-3 text-[11px] font-semibold
+      uppercase tracking-[0.12em] text-white/40;
+  }
+  .data-table tbody td {
+    @apply border-b border-white/[0.05] px-4 py-3 align-middle text-white/80;
+  }
+  .data-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+  .data-table tbody tr {
+    @apply transition-colors hover:bg-white/[0.025];
+  }
+  .data-table thead th:last-child,
+  .data-table tbody td:last-child {
+    position: sticky;
+    right: 0;
+    background: #080808;
+    box-shadow: -12px 0 16px -12px rgba(0, 0, 0, 0.9);
+  }
+  .data-table tbody tr:hover td:last-child {
+    background: #0d0d0d;
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: max(var(--safe-top), 0px);
+  }
+  .safe-bottom {
+    padding-bottom: max(var(--safe-bottom), 0px);
+  }
+  .pb-safe {
+    padding-bottom: calc(var(--safe-bottom) + 0.5rem);
+  }
+  .pt-safe {
+    padding-top: var(--safe-top);
+  }
+  .min-w-0 {
+    min-width: 0;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .tap {
+    touch-action: manipulation;
+  }
+  .safe-x {
+    padding-left: max(var(--safe-left), 0px);
+    padding-right: max(var(--safe-right), 0px);
+  }
+}
+
+/* ============================================================
+   Leaflet — tema oscuro CAVIO
+   ============================================================ */
+.leaflet-container {
+  background: #050505 !important;
+  font-family: inherit;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.92) saturate(0.7);
+}
+
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55) !important;
+  margin-right: 14px !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(16, 16, 16, 0.92) !important;
+  color: #e8e8e8 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #1c1c1c !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.55) !important;
+  color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 9px !important;
+  padding: 2px 6px !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-radius: 6px 0 0 0;
+}
+.leaflet-control-attribution a {
+  color: rgba(198, 243, 107, 0.55) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #141414;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+.leaflet-popup-content {
+  margin: 10px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.leaflet-popup-tip {
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.leaflet-popup-close-button {
+  color: #888 !important;
+}
+
+.leaflet-tooltip.cv-tooltip {
+  background: rgba(12, 12, 12, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e8e8e8;
+  border-radius: 9px;
+  padding: 5px 9px;
+  font-size: 11px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.leaflet-tooltip.cv-tooltip::before {
+  border-top-color: rgba(12, 12, 12, 0.95);
+}
+
+/* Marcadores personalizados */
+.cv-marker {
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 0 3px rgba(198, 243, 107, 0.22), 0 8px 20px rgba(0, 0, 0, 0.65);
+  background: #0d0d0d;
+  color: #c6f36b;
+  transition: transform 0.2s ease;
+}
+.cv-marker-pulse {
+  position: relative;
+}
+.cv-marker-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 2px solid rgba(198, 243, 107, 0.35);
+  animation: cvPulse 2s infinite;
+}
+@keyframes cvPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.fade-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
